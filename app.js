@@ -93,8 +93,12 @@ addBtn.addEventListener("click", addTask);
 
 
 // Extra: Enter-näppäin lisää tehtävän
-taskInput.addEventListener("keypress", function(event) {
+function handleEnterKey(event) {
     if (event.key === "Enter") {
         addTask();
     }
-});
+}
+
+// Sama funktio molempiin
+taskInput.addEventListener("keypress", handleEnterKey);
+taskTime.addEventListener("keypress", handleEnterKey);
