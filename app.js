@@ -18,7 +18,8 @@ function addTask() {
 
     tasks.push({
         text: text,
-        time: time,     
+        time: time, 
+        date: date,    
         done: false
     });
 

@@ -36,6 +36,51 @@ function renderQuickTasks() {
     });
 }
 
-// Alusta kun sivu latautuu
-document.addEventListener('DOMContentLoaded', renderQuickTasks);
 
+
+function renderCalendar() {
+    const weekDaysElement = document.querySelector('.week-days');
+    if (!weekDaysElement) return;
+
+    const today = new Date();
+    const currentDay = today.getDay(); // 0=sun, 1=mon...
+    
+    // Suomenkieliset päivänimet
+    const dayNames = ['Su', 'Ma', 'Ti', 'Ke', 'To', 'Pe', 'La'];
+    const fullDayNames = ['Sunnuntai', 'Maanantai', 'Tiistai', 'Keskiviikko', 'Torstai', 'Perjantai', 'Lauantai'];
+    
+    // Päivitä nykyinen päivä
+    const weekDayElement = document.querySelector('.week-day');
+    const fullDateElement = document.querySelector('.full-date');
+    
+    if (weekDayElement) {
+        weekDayElement.textContent = fullDayNames[today.getDay()];
+    }
+    if (fullDateElement) {
+        fullDateElement.textContent = today.toLocaleDateString('fi-FI');
+    }
+
+    // Luo viikonpäivät
+    weekDaysElement.innerHTML = '';
+    
+    for (let i = 0; i < 7; i++) {
+        const date = new Date(today);
+        date.setDate(today.getDate() + i);
+        
+        const dayCell = document.createElement('div');
+        dayCell.className = `day-cell ${i === 0 ? 'today' : ''}`;
+        
+        dayCell.innerHTML = `
+            <div class="day-name">${dayNames[date.getDay()]}</div>
+            <div class="day-number">${date.getDate()}</div>
+        `;
+        
+        weekDaysElement.appendChild(dayCell);
+    }
+}
+
+// Lisää DOMContentLoaded -käsittelijään
+document.addEventListener('DOMContentLoaded', function() {
+    renderQuickTasks();
+    renderCalendar();
+});
