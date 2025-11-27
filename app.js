@@ -1,7 +1,3 @@
-const tasks = [];
-
-
-// 1. Hae tarvittavat elementit DOMista:
 const taskInput = document.getElementById("taskInput");
 const addBtn = document.getElementById("addBtn");
 const taskList = document.getElementById("taskList");
@@ -9,24 +5,29 @@ const taskList = document.getElementById("taskList");
 
 addBtn.addEventListener("click", addTask)
 // 2. Tee funktio joka lisää uuden tehtävän:
+const tasks = [];
+
 function addTask() {
-    const task = taskInput.value;
-    
-    if (task==="") {
-        alert("Type something first")
+    const text = taskInput.value;
+    const time = document.getElementById("taskTime").value;
+
+    if (text === "") {
+        alert("Kirjoita tehtävä!");
         return;
     }
 
     tasks.push({
-        text : task,
-        done : false
+        text: text,
+        time: time,     
+        done: false
     });
 
     taskInput.value = "";
-    console.log(tasks)
+    document.getElementById("taskTime").value = "";
 
     renderTasks();
 }
+
 
 function toggleDone(index) {
     tasks[index].done = !tasks[index].done;
@@ -55,24 +56,29 @@ function removeTask(index) {
 function renderTasks() {
     taskList.innerHTML = "";
 
-    tasks.forEach((taskObj, index) => {
+    tasks.forEach((task, index) => {
         const li = document.createElement("li");
-        li.classList.add("task-item")
+        li.classList.add("task-item");
 
         li.innerHTML = `
-            <input type="checkbox" ${taskObj.done ? "checked" : ""} 
-                onclick="toggleDone(${index})">
-
-            <span style="text-decoration: ${taskObj.done ? "line-through" : "none"};">
-                ${taskObj.text}
+            <input type="checkbox" class="task-checkbox" ${task.done ? "checked" : ""}>
+            <span class="task-text" style="text-decoration:${task.done ? "line-through" : "none"}">
+                ${task.text}
             </span>
-
+            <span class="task-time">${task.time ? task.time : "--:--"}</span>
             <button class="delete-btn" onclick="removeTask(${index})">Poista</button>
         `;
+
+        
+        li.querySelector(".task-checkbox").addEventListener("change", function () {
+            task.done = this.checked;
+            renderTasks();
+        });
 
         taskList.appendChild(li);
     });
 }
+
 
 
 // 5. Laita addBtn toimimaan:
