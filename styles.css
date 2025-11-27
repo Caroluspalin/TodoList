@@ -58,9 +58,18 @@ button:hover {
 }
 
 .task-item {
-    display: flex ;
-    gap: 1px;
-    margin-bottom: 8px;
+  background: rgba(150,80,200,0.35);
+  backdrop-filter: blur(8px);
+  padding: 14px 18px 14px 18px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  backdrop-filter: blur(6px);
+  margin-bottom: 12px;
+
+  display: flex;
+  align-items: center;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .task-item span {
