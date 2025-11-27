@@ -17,13 +17,22 @@ function addTask() {
         return;
     }
 
-    tasks.push(task);
+    tasks.push({
+        text : task,
+        done : false
+    });
 
     taskInput.value = "";
     console.log(tasks)
 
     renderTasks();
 }
+
+function toggleDone(index) {
+    tasks[index].done = !tasks[index].done;
+    renderTasks();
+}
+
 
 
 // 3. Tee funktio joka poistaa tehtävän arraysta:
@@ -46,14 +55,23 @@ function removeTask(index) {
 function renderTasks() {
     taskList.innerHTML = "";
 
-    tasks.forEach((task, index) => {
-        const li = document.createElement("li")
+    tasks.forEach((taskObj, index) => {
+        const li = document.createElement("li");
+        li.classList.add("task-item")
+
         li.innerHTML = `
-        ${task}
-        <button onclick="removeTask(${index})">Poista</button>
+            <input type="checkbox" ${taskObj.done ? "checked" : ""} 
+                onclick="toggleDone(${index})">
+
+            <span style="text-decoration: ${taskObj.done ? "line-through" : "none"};">
+                ${taskObj.text}
+            </span>
+
+            <button class="delete-btn" onclick="removeTask(${index})">Poista</button>
         `;
+
         taskList.appendChild(li);
-    }); 
+    });
 }
 
 

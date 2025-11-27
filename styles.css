@@ -52,7 +52,19 @@ button:hover {
     border-bottom: 1px solid #eee;
 }
 
-.deleteBtn {
-    color: red;
+.delete-btn {
+    color: white;
     cursor: pointer;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 8px;
+}
+
+.task-item span {
+    flex: 1px;
+
 }
