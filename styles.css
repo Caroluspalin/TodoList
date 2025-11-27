@@ -1,42 +1,114 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: url('Background1.jpeg');
+    background: linear-gradient(135deg, #0f1c2e, #0a3d62);
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .container {
-    max-width: 400px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.main-content {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.quick-actions {
+    width: 280px;
+    background: rgba(15, 28, 46, 0.9);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.quick-actions h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.quick-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quick-btn {
+    padding: 14px;
+    background: linear-gradient(135deg, #1c2541, #3a506b);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.quick-btn:hover {
+    background: linear-gradient(135deg, #3a506b, #5bc0be);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(91, 192, 190, 0.3);
+}
+
+.quick-btn small {
+    display: block;
+    color: #b8b8b8;
+    font-size: 0.8em;
+    margin-top: 4px;
+}
+
+.quick-btn:hover small {
+    color: #e0f7fa;
 }
 
 .input-area {
     display: flex;
     gap: 10px;
+    margin-bottom: 25px;
 }
 
 input {
     flex: 1;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid lightgray;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+input:focus {
+    outline: none;
+    border-color: #3a506b;
+    box-shadow: 0 0 0 2px rgba(58, 80, 107, 0.2);
 }
 
 button {
-    padding: 10px 15px;
+    padding: 12px 18px;
     border: none;
-    background: black;
+    background: linear-gradient(135deg, #0f1c2e, #1c2541);
     color: white;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    opacity: 0.8;
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 #taskList {
@@ -45,34 +117,56 @@ button:hover {
     padding: 0;
 }
 
-.task {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.delete-btn {
-    color: white;
-    cursor: pointer;
-}
-
 .task-item {
-  background: rgba(150,80,200,0.35);
-  backdrop-filter: blur(8px);
-  padding: 14px 18px 14px 18px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  backdrop-filter: blur(6px);
-  margin-bottom: 12px;
+    background: linear-gradient(135deg, #0b132b, #1c2541, #3a506b);
+    backdrop-filter: blur(8px);
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    margin-bottom: 12px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
 
-  display: flex;
-  align-items: center;
-
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+.task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .task-item span {
-    flex: 1px;
+    flex: 1;
+}
 
+.task-item.done {
+    opacity: 0.7;
+    background: linear-gradient(135deg, #1c2541, #2d374d);
+}
+
+.task-item.done span {
+    text-decoration: line-through;
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: linear-gradient(135deg, #ff5252, #e53935);
+    transform: scale(1.05);
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
