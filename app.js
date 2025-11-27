@@ -28,7 +28,13 @@ function addTask() {
     renderTasks();
 }
 
-
+function sortTasksByTime() {
+    tasks.sort((a,b) => {
+        if (a.time < b.time) return -1;
+        if (a.time > b.time) return 1;
+        return 0;
+    });
+}
 function toggleDone(index) {
     tasks[index].done = !tasks[index].done;
     renderTasks();
@@ -54,6 +60,7 @@ function removeTask(index) {
 
 // 4. Tee funktio joka päivittää näytön:
 function renderTasks() {
+    sortTasksByTime();
     taskList.innerHTML = "";
 
     tasks.forEach((task, index) => {
