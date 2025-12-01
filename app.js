@@ -1,6 +1,7 @@
 const taskInput = document.getElementById("taskInput");
 const addBtn = document.getElementById("addBtn");
 const taskList = document.getElementById("taskList");
+const taskTime = document.getElementById("taskTime");
 
 
 addBtn.addEventListener("click", addTask)
@@ -18,8 +19,7 @@ function addTask() {
 
     tasks.push({
         text: text,
-        time: time, 
-        date: date,    
+        time: time,     
         done: false
     });
 
